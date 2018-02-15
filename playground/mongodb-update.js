@@ -46,19 +46,19 @@ MongoClient.connect(url, (err, db) => {
   //   console.log(result);
   // });
 
-  db.collection('Users').updateMany({
-    _id: new ObjectID("5a82e1eb36076f559776ad6f")
-  },{
-    $set: {
-      name: 'Mei Lii',
-      location: 'China'
-    },
-    $inc: {
-      age: 5
-    }
-  }).then((result) => {
-    console.log(result.result);
-  })
+  // db.collection('Users').updateMany({
+  //   _id: new ObjectID("5a82e1eb36076f559776ad6f")
+  // },{
+  //   $set: {
+  //     name: 'Mei Lii',
+  //     location: 'China'
+  //   },
+  //   $inc: {
+  //     age: 5
+  //   }
+  // }).then((result) => {
+  //   console.log(result.result);
+  // })
 
   // db.close();
 });

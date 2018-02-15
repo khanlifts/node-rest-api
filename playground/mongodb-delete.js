@@ -28,8 +28,8 @@ MongoClient.connect(url, (err, db) => {
   //   console.log(result.result);
   // });
 
-  db.collection('Users').findOneAndDelete({_id: ObjectID("5a82e0a218f54f558a478b97")}).then((result) => {
-    console.log(result);
-  });
+  // db.collection('Users').findOneAndDelete({_id: ObjectID("5a82e0a218f54f558a478b97")}).then((result) => {
+  //   console.log(result);
+  // });
   // db.close();
 });

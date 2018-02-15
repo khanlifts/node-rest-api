@@ -5,14 +5,13 @@ const {app} = require('./../server');
 const {Todo} = require('./../models/todo');
 
 // Remove all todos from database
-// beforeEach runs before each test in describe block
 beforeEach((done) => {
   Todo.remove({}).then(() => done());
 });
 
 describe('POST /todos', () => {
   it('should create a new todo', (done) => {
-    var text = 'This is a new todo';
+    var text = 'Test todo text';
 
     request(app)
       .post('/todos')
@@ -23,11 +22,14 @@ describe('POST /todos', () => {
       })
       .end((err, res) => {
         if (err) {
-          return done(err)
+          return done(err);
         }
 
+        // find Todos in database
         Todo.find().then((todos) => {
+          // assume we start with zero todos
           expect(todos.length).toBe(1);
+          // assertion of the body...there has to be text
           expect(todos[0].text).toBe(text);
           done();
         }).catch((e) => done(e));
