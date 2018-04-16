@@ -15,6 +15,14 @@ const port = process.env.PORT;
 
 app.use(bodyParser.json());
 
+// handle CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
+// CREATE
 app.post('/todos', (req, res) => {
   var todo = new Todo({
     text: req.body.text
@@ -27,6 +35,7 @@ app.post('/todos', (req, res) => {
   });
 });
 
+// READ ALL
 app.get('/todos', (req, res) => {
   Todo.find().then((todos) => {
     res.send({todos});
@@ -35,7 +44,7 @@ app.get('/todos', (req, res) => {
   })
 });
 
-// Challenge
+// READ ONE
 app.get('/todos/:id', (req, res) => {
   var id = req.params.id;
   if (!ObjectID.isValid(id)) {
@@ -49,6 +58,7 @@ app.get('/todos/:id', (req, res) => {
   }).catch((e) => res.status(400).send());
 });
 
+// DELETE
 app.delete('/todos/:id', (req, res) => {
   var id = req.params.id;
 
@@ -63,6 +73,7 @@ app.delete('/todos/:id', (req, res) => {
   }).catch((e) => res.status(400).send());
 });
 
+// UPDATE
 app.patch('/todos/:id', (req, res) => {
   var id = req.params.id;
   // pick creates object of chosen properties e.g. text, completed
